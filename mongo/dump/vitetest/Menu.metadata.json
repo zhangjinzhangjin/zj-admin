@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"vitetest.Menu"},{"v":{"$numberInt":"2"},"unique":true,"key":{"menuKey":{"$numberInt":"1"}},"name":"menuKey_1","ns":"vitetest.Menu","background":true}],"uuid":"772358fcfb6348d0b43fca4a172d66b0"}

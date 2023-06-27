@@ -1,0 +1,12 @@
+:root {
+  --dark-bg-color: #293146;
+  --menuText: #ffffff;
+  --menuActiveText: #409eff;
+  --menuBg: #283c55;
+  --menuHover: #1a293c;
+  --subMenuBg: #193152;
+  --subMenuHover: #001528;
+  --navHeadBgColor: #ffffff;
+  --navHeadTextColor: #303133;
+  --sideBarWidth: 210px;
+}

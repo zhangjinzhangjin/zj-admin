@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"vitetest.Pet"},{"v":{"$numberInt":"2"},"unique":true,"key":{"code":{"$numberInt":"1"}},"name":"code_1","ns":"vitetest.Pet","background":true}],"uuid":"6226cd5f4c4d4b9ca788efeed52ef918"}

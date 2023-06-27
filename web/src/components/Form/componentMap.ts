@@ -1,0 +1,46 @@
+import type { Component } from "vue";
+import {
+  ElCascader,
+  ElCheckboxGroup,
+  ElColorPicker,
+  ElDatePicker,
+  ElInput,
+  ElInputNumber,
+  ElRadioGroup,
+  ElRate,
+  ElSelect,
+  ElSelectV2,
+  ElSlider,
+  ElSwitch,
+  ElTimePicker,
+  ElTimeSelect,
+  ElTransfer,
+  ElAutocomplete,
+  ElDivider,
+} from "element-plus";
+import Editor from "@/components/Editor/index.vue";
+import Upload from "@/components/Upload/index.vue";
+const componentMap: Recordable<Component, FormComponentName> = {
+  Radio: ElRadioGroup,
+  RadioButton: ElRadioGroup,
+  Checkbox: ElCheckboxGroup,
+  CheckboxButton: ElCheckboxGroup,
+  Input: ElInput,
+  Autocomplete: ElAutocomplete,
+  InputNumber: ElInputNumber,
+  Select: ElSelect,
+  Cascader: ElCascader,
+  Switch: ElSwitch,
+  Slider: ElSlider,
+  TimePicker: ElTimePicker,
+  DatePicker: ElDatePicker,
+  Rate: ElRate,
+  ColorPicker: ElColorPicker,
+  Transfer: ElTransfer,
+  Divider: ElDivider,
+  TimeSelect: ElTimeSelect,
+  SelectV2: ElSelectV2,
+  Editor: Editor,
+  Upload: Upload,
+};
+export { componentMap };

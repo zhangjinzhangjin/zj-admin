@@ -1,0 +1,98 @@
+.tags-view-container {
+  height: 41px;
+  padding: 6px 16px 0px;
+  width: 100%;
+  background: #f7f7f7;
+  z-index: 999;
+  .tags-view-wrapper {
+    .tags-view-item {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      min-width: 150px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      color: #808080;
+      background-color: #f7f7f7;
+      padding: 0 26px 0 8px;
+      font-size: 14px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      vertical-align: top;
+      &:last-of-type {
+        margin-right: 15px;
+      }
+      &.active {
+        box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.1) !important;
+        color: var(--el-color-primary);
+        background-color: #fff;
+        z-index: 200;
+        &::before {
+          content: "";
+          background: #fff;
+          position: absolute;
+          width: 8px;
+          height: 2px;
+          bottom: 0px;
+          left: -5px;
+          transform: rotateZ(-17deg);
+        }
+        &::after {
+          content: "";
+          background-color: #fff;
+          position: absolute;
+          width: 8px;
+          height: 2px;
+          bottom: 0px;
+          right: -5px;
+          transform: rotateZ(19deg);
+          z-index: 100;
+        }
+      }
+      .el-icon-close {
+        width: 16px;
+        height: 16px;
+        vertical-align: 2px;
+        border-radius: 50%;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transform-origin: 100% 50%;
+        position: absolute;
+        right: 10px;
+        top: 25%;
+        line-height: 12px;
+        &:before {
+          transform: scale(0.6);
+          display: inline-block;
+          vertical-align: -2px;
+        }
+        &:hover {
+          background-color: #b4bccc;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .contextmenu {
+    margin: 0;
+    background: #fff;
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+    li {
+      margin: 0;
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
+      }
+    }
+  }
+}

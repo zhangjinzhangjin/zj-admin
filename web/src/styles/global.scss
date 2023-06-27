@@ -1,0 +1,86 @@
+@import './var.css';
+@import './transition.scss';
+@import './sidebar.scss';
+@import './tagsView.scss';
+@import 'main.scss';
+@import 'element-plus/theme-chalk/dark/css-vars.css';
+@import './elementHack.scss';
+*{
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+html, body, #app{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+a {
+  overflow: hidden;
+  text-decoration: none;
+  background: none;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+}
+::-webkit-scrollbar {
+  width: 6px !important;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(220, 228, 243, 1) !important;
+  border-radius: 4px !important;
+}
+::-webkit-scrollbar-track {
+  border-radius: 0 !important;
+}
+::-webkit-scrollbar:horizontal {
+  height: 6px !important;
+  background-color: transparent !important;
+}
+.ub{
+	display: flex!important;
+}
+.uhide{
+	display:none !important;
+}
+.ub-rev{
+	flex-direction: column;
+}
+.ub-as{
+	align-items: flex-start;
+}
+.ub-ac{
+	align-items: center;
+}
+.ub-ae{
+	align-items: flex-end;
+}
+.ub-ps{
+	justify-content: flex-start;
+}
+.ub-pc{
+	justify-content: center;
+}
+.ub-pe{
+	justify-content: flex-end;
+}
+.ub-pj{
+	justify-content: space-between;
+}
+.ub-pa{
+	justify-content: space-around;
+}
+.ub-wrap{
+	flex-wrap: wrap;
+}
+.ub-f1{
+	flex: 1;
+	width: 0px;
+}
+.ub-f2{
+	flex: 2;
+	width: 0px;
+}
+$color-gray: #cccccc;

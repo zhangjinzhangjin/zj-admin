@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"vitetest.Role"},{"v":{"$numberInt":"2"},"unique":true,"key":{"code":{"$numberInt":"1"}},"name":"code_1","ns":"vitetest.Role","background":true}],"uuid":"e6f7f74ae9044cf287dfcc321eb0f697"}

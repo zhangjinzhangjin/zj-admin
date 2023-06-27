@@ -1,0 +1,2 @@
+未搞定mongo，目前启动容器后需要手动进到mongo容器还原数据
+mongorestore -d vitetest ./dump/vitetest

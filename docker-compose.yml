@@ -1,0 +1,43 @@
+version: '2.0'
+services:
+  mongo:
+    image: mongo
+    # container_name: zj-server
+    # build: ./mongo
+    restart: always
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/data/logs
+    volumes:
+      - ./mongo/dump:/data/db
+    # volumes:
+      # - ./mongo:/usr/mongo
+    ports:
+      - 27017:27017
+    # command:
+    #   /usr/mongo/import.sh
+  mongo-express:
+    image: mongo-express
+    restart: always 
+    ports:
+      - 8081:8081
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - 8092:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./web/dist:/var/www/html/
+  nestjs:
+    container_name: zj-server
+    #构建容器
+    build: ./server
+    #直接从git拉去
+    # build: git@github.com:su37josephxia/docker_ci.git#:backend
+    # 需要链接本地代码时
+    # volumes:
+      # - ./server/dist:/usr/src/app/dist
+      # - ./server:/usr/src/app
+    ports:
+      - 3000:3000

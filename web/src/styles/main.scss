@@ -1,0 +1,13 @@
+#app{
+  .main-container{
+    height: 100%;
+    overflow: hidden;
+    transition: margin-left .28s;
+    margin-left: var(--sideBarWidth);
+    background-color: #f7f7f7;
+    &.menuPosTop{
+      margin-left: 0px !important;
+    }
+  }
+  
+}
