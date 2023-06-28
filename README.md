@@ -41,4 +41,4 @@ npm install zhangjincli -g
 - 数据模型只支持json格式，.json文件为前端模型，_b.json为后端数据模型，zj init models可以生成测试数据
 - 支持递归编译
 - 生成的后端代码，直接放到server\src\modules目录中，需要手动在app.module.ts中引入模块，需要配置swagger则自行在main.ts中添加
-- 生成的前端代码，直接放到web\src\views目录中，在运行起来的项目页面中，系统管理->菜单管理中添加相应路由即可
+- 生成的前端代码，直接放到web\src\views目录中，在运行起来的项目页面中，系统管理->菜单管理中添加相应路由即可，别忘了去角色管理配置一下菜单权限
