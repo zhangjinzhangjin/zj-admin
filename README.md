@@ -17,7 +17,7 @@ docker-compose up
 npm install
 npm run dev
 ```
-ps：如果单独运行前后端代码，由于无mock都是真接口，需要自行配置mongodb数据库，并执行mongo\import.sh导入基础数据
+ps：由于无mock都是真接口，需要导入基础数据。docker需要在容器中自行导入，自行配置的mongodb可执行mongo\import.sh导入
 
 # 脚手架使用
 ```javascript
