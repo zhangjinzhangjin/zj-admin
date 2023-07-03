@@ -4,6 +4,8 @@
 # 说明：
 - 全栈web开发解决方案，已集成docker并搭配代码生成脚手架工具，方便开发人员快速应用部署，高效开发
 - 框架已提供完备的UI交互，以及用户、角色、菜单等基础功能，小而精，无冗余，开箱即用
+- 具体配置及应用请移步[帮助文档](https://bigjbigj.gitee.io/zj-admin-preview/)~
+
 ## 技术栈
 - 前端: vue3+ts+vite+elementplus
 - 后端: nestjs+mongoose
