@@ -1,6 +1,10 @@
 <template>
   <div class="wrapper">
     <Form :schema="schema" label-width="auto" label-position="right" ref="formRef">
+      <!-- 字段直接匹配上就不处理直接展示 -->
+      <template #field0>
+        <div style="color: rgb(255, 71, 172);background: #dddddd;padding: 0px 20px;">123</div>
+      </template>
       <template #field3-error>
         <div>123</div>
       </template>
@@ -392,6 +396,10 @@ const handleClick = () => {
 }
 const schema = reactive<FormSchema[]>([
   {
+    field: 'field0',
+    label: "自定义template",
+  },
+  {
     field: 'field1',
     label: "输入框",
     component: 'Divider'
@@ -512,6 +520,9 @@ const schema = reactive<FormSchema[]>([
           value: '2'
         }
       ]
+    },
+    colProps: {
+      span: 6
     }
   },
   {
@@ -530,6 +541,9 @@ const schema = reactive<FormSchema[]>([
         }
       ],
       optionsSlot: true
+    },
+    colProps: {
+      span: 6
     }
   },
   {
@@ -565,6 +579,9 @@ const schema = reactive<FormSchema[]>([
           ]
         }
       ]
+    },
+    colProps: {
+      span: 6
     }
   },
   {
@@ -601,6 +618,9 @@ const schema = reactive<FormSchema[]>([
         }
       ],
       optionsSlot: true
+    },
+    colProps: {
+      span: 6
     }
   },
   {
@@ -1096,8 +1116,10 @@ const schema = reactive<FormSchema[]>([
     field: 'field67',
     component: 'Upload',
     label: "编辑模式",
+    value: "64a76e2c6bc77c2b24f956a3",
     componentProps: {
       type: 'edit',
+      allowFormat: "docx",
       // size: 0.01, // 10k
       limit: 3, // 最多3个文件
     }
@@ -1106,7 +1128,7 @@ const schema = reactive<FormSchema[]>([
     field: 'field68',
     component: 'Upload',
     label: "查看模式",
-    value: "1683275644703,1683275719817",
+    value: "64a76d41f9b8f6040cb93291,64a76d936bc77c2b24f956a2",
     componentProps: {
       type: 'view',
     }

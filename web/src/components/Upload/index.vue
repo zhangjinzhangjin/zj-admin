@@ -16,6 +16,22 @@ import { UploadUserFile } from 'element-plus'
 import { onBeforeMount, reactive, ref, unref } from 'vue'
 import common from "@/common"
 import { getToken } from '@/utils/auth'
+import request from "@/utils/request";
+function getFile(id) {
+  return request({
+    url: "/file/getOneById",
+    method: "get",
+    params: { id },
+  });
+}
+function downloadFile(id) {
+  return request({
+    url: "/file/downloadById",
+    method: "get",
+    params: { id },
+    responseType: 'blob',
+  });
+}
 defineOptions({
   name: "Upload"
 })
@@ -59,18 +75,30 @@ const emit = defineEmits(['update:modelValue'])
 const fileList = ref<UploadUserFile[]>([])
 const token = getToken();
 const uploadSetting = reactive({
-  url: import.meta.env.VITE_API_BASEPATH + "/img/upload",
+  url: import.meta.env.VITE_API_BASEPATH + "file/upload",
   headers: { Authorization: "Bearer " + token }
 })
 const handleRemove = (file, uploadFiles) => {
   console.log(file, uploadFiles)
   updateModel();
 }
-const handlePreview = (uploadFile) => {
+const handlePreview = async (uploadFile) => {
   console.log(uploadFile)
   // 这里做下载功能
   if (type === 'view') {
-    return console.log("这里做下载功能,文件id为" + uploadFile.uid)
+    // 第一种直接文件地址下载，因为后端加了时间戳，所以下载的文件会变成这样内网_1688694163233.bat。。。不太友好
+    // return window.location.href = import.meta.env.VITE_API_BASEPATH + uploadFile.url.substring(1)
+    const res = await downloadFile(uploadFile._id)
+    const { data, headers } = res
+    const blob = new Blob([data], { type: headers['content-type'] })
+    let dom = document.createElement('a')
+    let url = window.URL.createObjectURL(blob)
+    dom.href = url
+    dom.download = uploadFile.name;
+    dom.style.display = 'none'
+    document.body.appendChild(dom)
+    dom.click()
+    document.body.removeChild(dom)
   }
 }
 const beforeRemove = () => {
@@ -93,10 +121,14 @@ const beforeUpload = (rawFile) => {
   }
   if (allowFormat === 'all') {
     return true;
-  } else if (allowFormat.indexOf(rawFile.type) < 0) {
-    message = "文件格式不符，请仔细核对。当前支持上传的文件格式为:" + allowFormat + "!"
-    common.tip(message, "error")
-    return false
+  } else {
+    const buffer = rawFile.name.split(".")
+    const extname = buffer[buffer.length - 1];
+    if (allowFormat.indexOf(extname) < 0) {
+      message = "文件格式不符，请仔细核对。当前支持上传的文件格式为:" + allowFormat + "!"
+      common.tip(message, "error")
+      return false
+    }
   }
   return true
 }
@@ -125,23 +157,11 @@ const updateModel = () => {
 onBeforeMount(() => {
   if (modelValue.length) {
     const ids = modelValue.split(",")
-    const uploadFlag = unref(fileList).find(item => {
-      if (item.response) {
-        return true
-      }
+    fileList.value = []
+    ids.forEach(async id => {
+      const res = await getFile(id) as any;
+      fileList.value.push(res.data)
     })
-    console.log("文件ids:", ids)
-    // todo  初始化fileList
-    fileList.value = [
-      {
-        name: 'element-plus-logo.svg',
-        url: 'https://element-plus.org/images/element-plus-logo.svg',
-      },
-      {
-        name: 'element-plus-logo2.svg',
-        url: 'https://element-plus.org/images/element-plus-logo.svg',
-      },
-    ]
   }
 })
 </script>

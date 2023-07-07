@@ -29,4 +29,8 @@ declare type SearchFieldSchema = {
   span?: number;
   // 非通用选项
   extendProps?: extendPropsObj;
+  // 标签宽度
+  labelWidth?: string | number;
+  // placeholder
+  placeholder?: string;
 };

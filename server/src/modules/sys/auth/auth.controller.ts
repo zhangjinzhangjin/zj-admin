@@ -16,6 +16,10 @@ export class AuthController extends BaseController {
   // 默认密码admin, 000000
   // 传入name及password取得jwt token
   @Post('/login')
+  @ApiBody({
+    type: UserDto,
+    description: '用户信息',
+  })
   async getToken(
     @Body('username') username: string,
     @Body('password') password: string,

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <SearchFields @search="search" :schema="searchFieldsSchema">
+    <SearchFields @search="search" :schema="searchFieldsSchema" :show-label="false">
       <el-button type="warning" @click="openAddDialog">
         <svg-icon icon-class="add" />
         <span style="margin-left: 10px">添加</span>

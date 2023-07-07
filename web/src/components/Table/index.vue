@@ -105,6 +105,8 @@ export default defineComponent({
   },
   emits: ['currentChange', 'sizeChange', 'sortChange', 'register'],
   setup(props, { attrs, slots, emit, expose }) {
+    // tableHeight 初始列表高度，后续会随着resize改变自动调整
+    // offset是整个页面高度-offset=tabelHeight，可以一点点试，调整到满意的值为止
     const tableHeight = ref<number>(props.tableHeight);
     props.autoResize && useGridResize(tableHeight, props.offset)
     const elTableRef = ref<ComponentRef<typeof ElTable>>()

@@ -6,6 +6,10 @@
         <svg-icon icon-class="add" />
         <span style="margin-left: 10px">添加</span>
       </el-button>
+      <!-- 只要slot和field匹配上，就展示template内容 -->
+      <template #custom>
+        <div style="color:red;">Custom Search Fields</div>
+      </template>
     </SearchFields>
     <Table :schema="tableColumnsSchema" autoResize :data="tableData" :loading="loading" :total="paginationParams.total"
       @currentChange="handleCurrentChange" @sizeChange="handleSizeChange" @sortChange="handleSortChange"
@@ -24,7 +28,7 @@
       @submit-done="submitDone" :operateType="operateType" />
   </div>
 </template>
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import SearchFields from "@/components/SearchFields/index.vue"
 import { onMounted, reactive, ref, unref, h, computed } from 'vue'
 import type { Ref } from 'vue'
@@ -56,11 +60,26 @@ const searchFieldsSchema = reactive<SearchFieldSchema[]>([
       options: unref(typeArray)
     }
   },
+  {
+    field: 'times',
+    label: "查询时间范围",
+    component: 'DateRange',
+    value: ["2021-02-01", "2022-03-04"],
+    span: 5,
+  },
+  // 自定义字段，自行处理
+  {
+    field: 'custom',
+    label: "自定义字段",
+    span: 5,
+  },
 ])
-// 具体的搜索param，默认值要和schema保持一致，也可以用函数赋值
+// 具体的搜索param，默认值最好和schema中value保持一致，也可以用函数赋值
 const searchFields = reactive({
   name: "",
-  type: "1"
+  type: "1",
+  times: [],
+  custom: "", // 自行处理
 })
 // 搜索面板点击搜索时触发事件
 const search = (params: object) => {
@@ -99,7 +118,7 @@ const tableColumnsSchema: TableColumn[] = [
         () => typeArray.find(item => item.value == cellValue)?.label
       )
       // return (
-      //   <div>123456 </div>
+      //   <ElTag type={cellValue == "1" ? 'success' : 'warning'}>{typeArray.find(item => item.value == cellValue)?.label}</ElTag>
       // )
     }
   },
@@ -123,9 +142,21 @@ interface tableDataObj {
   type?: string
   desp?: string
 }
+// 页脚参数
+const paginationParams = reactive({
+  pageNo: 1,
+  pageSize: common.pageSizes[0],
+  total: 0
+})
+// 排序参数
+const sortParams = reactive({
+  orderName: "",
+  orderDir: ""
+});
 const tableData: Ref<tableDataObj[]> = ref([])
 const getList = () => {
   loading.value = true
+  // 自定义字段自行处理参数
   const params = { ...searchFields, pageNo: paginationParams.pageNo, pageSize: paginationParams.pageSize, orderName: sortParams.orderName, orderDir: sortParams.orderDir }
   console.log(params)
   const sData = [
@@ -151,12 +182,6 @@ const getList = () => {
     loading.value = false
   }, 1000)
 }
-// 基础params
-const paginationParams = reactive({
-  pageNo: 1,
-  pageSize: common.pageSizes[0],
-  total: 0
-})
 const handleCurrentChange = (num) => {
   paginationParams.pageNo = num
   getList()
@@ -166,10 +191,6 @@ const handleSizeChange = (size) => {
   paginationParams.pageSize = size
   getList()
 }
-const sortParams = reactive({
-  orderName: "",
-  orderDir: ""
-});
 const handleSortChange = (data) => {
   const { prop, order } = data;
   sortParams.orderName = prop;

@@ -116,7 +116,8 @@ export default defineComponent({
     const renderFormItem = (item: FormSchema) => {
       // 单独给不需要额外处理的，带有options属性的组件做处理
       const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
-      // 所有的templage #
+      // 所有和这个field有关的template，并且在schema中componentProps: {slots: {suffix: true,prefix: true}}指定为true的才行 
+      // 如 template #field-suffix
       const slotsMap: Recordable = {
         ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
       }
