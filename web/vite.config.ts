@@ -4,11 +4,8 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import path from "path";
-// @ts-expect-error 待升级ts vue3版本解决
-import DefineOptions from "unplugin-vue-define-options/vite";
 import viteCompression from "vite-plugin-compression";
 import { createHtmlPlugin } from "vite-plugin-html";
-// import { viteMockServe } from "vite-plugin-mock";
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd());
   return {
@@ -16,7 +13,6 @@ export default defineConfig(({ mode, command }) => {
     plugins: [
       vue(),
       VueJsx(),
-      DefineOptions(),
       createHtmlPlugin({
         inject: {
           data: {
