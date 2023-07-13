@@ -172,7 +172,12 @@ onBeforeMount(() => {
   &.viewMode {
     :deep(.el-upload-list) {
       margin-top: -30px;
+
+      .el-upload-list__item-status-label,
+      .el-icon--close,
+      .el-icon--close-tip {
+        display: none;
+      }
     }
   }
-}
-</style>
+}</style>
