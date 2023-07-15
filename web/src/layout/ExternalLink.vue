@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
-import { computed } from 'vue';
+import { computed, watch, ref } from 'vue';
 import Sidebar from "./components/sidebar/index.vue"
 import SidebarH from "./components/sidebarH/index.vue"
 import Navbar from "./components/Navbar.vue"
@@ -31,11 +31,16 @@ defineOptions({
 })
 const route = useRoute();
 const permissionStore = usePermissionStoreWithOut();
-const menuInfo = permissionStore.getRoutes_1d.find(item => item.path === route.fullPath)
-const linkAddress = computed(() => {
-  // return menuInfo?.linkAddress
-  return "https://cn.vuejs.org/"
-});
+const linkAddress = ref<string | undefined>("")
+// 监听当前路由
+watch(
+  () => route.fullPath,
+  (newValue: string) => {
+    const menuInfo = permissionStore.getRoutes_1d.find(item => item.path === newValue)
+    linkAddress.value = menuInfo?.linkAddress
+  },
+  { immediate: true }
+)
 const appStore = useAppStoreWithOut();
 const layout = computed(() => appStore.getLayout) // 左侧菜单还是顶部菜单 left top
 const collapse = computed(() => appStore.getCollapse) // 菜单折叠状态
